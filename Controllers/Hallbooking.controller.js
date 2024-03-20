@@ -31,6 +31,7 @@ let rooms = [
     pricePerHour: 600,
   },
 ];
+
 let bookings = [
   {
     bookingId: 1,
@@ -47,6 +48,45 @@ let bookings = [
     date: "2024-03-21",
     startTime: "14:00",
     endTime: "16:00",
+  },
+  {
+    bookingId: 3,
+    customerId: 3,
+    roomName: "Sunset View",
+    date: "2024-03-22",
+    startTime: "09:00",
+    endTime: "11:00",
+  },
+  {
+    bookingId: 4,
+    customerId: 3,
+    roomName: "Ocean Breeze",
+    date: "2024-03-22",
+    startTime: "13:00",
+    endTime: "15:00",
+  },
+];
+
+let customers = [
+  {
+    customerId: 1,
+    name: "John Doe",
+    email: "john@example.com",
+  },
+  {
+    customerId: 2,
+    name: "Alice Smith",
+    email: "alice@example.com",
+  },
+  {
+    customerId: 3,
+    name: "Bob Johnson",
+    email: "bob@example.com",
+  },
+  {
+    customerId: 4,
+    name: "Emma Brown",
+    email: "emma@example.com",
   },
 ];
 
@@ -115,6 +155,7 @@ export const bookRoom = (req, res) => {
     });
   }
 };
+
 // Function to get all bookings
 export const getAllBookings = (req, res) => {
   res.status(200).json(bookings);
@@ -122,17 +163,6 @@ export const getAllBookings = (req, res) => {
 
 // Function to get all customers with booked data
 export const getAllCustomers = (req, res) => {
-  const customers = [];
-  for (const booking of bookings) {
-    const customerIndex = customers.findIndex(
-      (customer) => customer.customerId === booking.customerId
-    );
-    if (customerIndex === -1) {
-      customers.push({ customerId: booking.customerId, bookings: [booking] });
-    } else {
-      customers[customerIndex].bookings.push(booking);
-    }
-  }
   res.status(200).json(customers);
 };
 
