@@ -162,7 +162,19 @@ export const getAllBookings = (req, res) => {
 };
 
 // Function to get all customers with booked data
+// Function to get all customers with booked data
 export const getAllCustomers = (req, res) => {
+  const customers = [];
+  for (const booking of bookings) {
+    const customerIndex = customers.findIndex(
+      (customer) => customer.customerId === booking.customerId
+    );
+    if (customerIndex === -1) {
+      customers.push({ customerId: booking.customerId, bookings: [booking] });
+    } else {
+      customers[customerIndex].bookings.push(booking);
+    }
+  }
   res.status(200).json(customers);
 };
 
