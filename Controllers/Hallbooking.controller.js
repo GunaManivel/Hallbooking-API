@@ -24,7 +24,7 @@ let rooms = [
     pricePerHour: 300,
   },
   {
-    id: 3,
+    id: 4,
     roomName: "Ocean Breeze",
     seatsAvailable: 20,
     amenities: "beachfront, spa",
@@ -72,32 +72,49 @@ export const getAllRooms = (req, res) => {
 // Function to book a room
 export const bookRoom = (req, res) => {
   const { customerId, roomName, date, startTime, endTime } = req.body;
-  // Check if the room is available
-  const isRoomAvailable = !bookings.some(
-    (booking) =>
-      booking.roomName === roomName &&
-      booking.date === date &&
-      !(endTime <= booking.startTime || startTime >= booking.endTime)
-  );
-  if (!isRoomAvailable) {
-    return res
-      .status(400)
-      .json({ message: "Room is already booked for the given time slot" });
-  }
-  const newBooking = {
-    bookingId: bookings.length + 1,
-    customerId,
-    roomName,
-    date,
-    startTime,
-    endTime,
-  };
-  bookings.push(newBooking);
-  res
-    .status(201)
-    .json({ message: "Room booked successfully", booking: newBooking });
-};
 
+  // Check if the customer already exists
+  const existingCustomerIndex = bookings.findIndex(
+    (booking) => booking.customerId === customerId
+  );
+
+  if (existingCustomerIndex !== -1) {
+    // Customer already exists, add booking to their existing bookings
+    const existingCustomer = bookings[existingCustomerIndex];
+    const newBooking = {
+      bookingId: bookings.length + 1,
+      customerId,
+      roomName,
+      date,
+      startTime,
+      endTime,
+    };
+    existingCustomer.bookings.push(newBooking);
+    res
+      .status(201)
+      .json({ message: "Room booked successfully", booking: newBooking });
+  } else {
+    // Customer does not exist, create a new customer object and add booking
+    const newCustomer = {
+      customerId,
+      bookings: [
+        {
+          bookingId: bookings.length + 1,
+          customerId,
+          roomName,
+          date,
+          startTime,
+          endTime,
+        },
+      ],
+    };
+    bookings.push(newCustomer);
+    res.status(201).json({
+      message: "Room booked successfully",
+      booking: newCustomer.bookings[0],
+    });
+  }
+};
 // Function to get all bookings
 export const getAllBookings = (req, res) => {
   res.status(200).json(bookings);
