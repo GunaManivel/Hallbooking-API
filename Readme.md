@@ -93,6 +93,7 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 
 This project is licensed under the [MIT License](LICENSE).
 
+API documentation availble at : https://documenter.getpostman.com/view/31934300/2sA358dR2C
 
 
 

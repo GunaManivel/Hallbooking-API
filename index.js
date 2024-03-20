@@ -13,7 +13,7 @@ app.use("/api", hallBookingRouter);
 // Route for the API documentation
 app.get("/api-docs", (req, res) => {
   // Redirect to the URL where your API documentation is hosted
-  res.redirect("https://documenter.getpostman.com/view/31934300/2sA358d5ck");
+  res.redirect("https://documenter.getpostman.com/view/31934300/2sA358dR2C");
 });
 
 // Route for the root endpoint
@@ -70,7 +70,7 @@ app.get("/", (req, res) => {
                 <li><strong>GET /api/customers:</strong> Retrieve all customers with booked data</li><br/>
                 <li><strong>GET /api/customers/:customerId/bookings:</strong> Retrieve bookings for a specific customer</li><br/>
             </ul>
-            <p>For detailed information on how to use each endpoint, refer to the <a href="/api-docs" class="https://documenter.getpostman.com/view/31934300/2sA358d5ck">API documentation</a>.</p>
+            <p>For detailed information on how to use each endpoint, refer to the <a href="/api-docs" class="https://documenter.getpostman.com/view/31934300/2sA358dR2C">API documentation</a>.</p>
         </div>
     </body>
     </html>
