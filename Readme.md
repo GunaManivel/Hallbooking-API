@@ -34,8 +34,8 @@ The server will run on http://localhost:4000 by default.
 
 ### Create Room
 
-- Method: POST 
-- Endpoint: /api/createrooms
+- Method: `POST `
+- Endpoint: `/api/createrooms`
 
 Create a new room with the following JSON body parameters:
 
@@ -46,15 +46,15 @@ Create a new room with the following JSON body parameters:
 
 ### Get All Rooms
 
-- Method: GET 
-- Endpoint: /api/rooms
+- Method: `GET` 
+- Endpoint: `/api/rooms`
 
 Retrieve all rooms available for booking.
 
 ### Book Room
 
-- Method: POST 
-- Endpoint: /api/bookings
+- Method: `POST` 
+- Endpoint: `/api/bookings`
 
 Book a room with the following JSON body parameters:
 
@@ -66,22 +66,22 @@ Book a room with the following JSON body parameters:
 
 ### Get All Bookings
 
-- Method: GET 
-- Endpoint: /api/Allbookings
+- Method: `GET `
+- Endpoint: `/api/Allbookings`
 
 Retrieve all bookings made.
 
 ### Get All Customers with Booked Data
 
-- Method: GET 
-- Endpoint: /api/customers
+- Method: `GET `
+- Endpoint: `/api/customers`
   
 Retrieve all customers along with their booked data.
 
 ### Get Bookings for a Specific Customer
 
 - Method: GET 
-- Endpoint: /api/customers/:customerId/bookings
+- Endpoint: `/api/customers/:customerId/bookings`
 
 Retrieve bookings for a specific customer identified by `customerId`.
 
